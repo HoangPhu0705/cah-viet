@@ -8,7 +8,7 @@ export default function AnimatedBackground({
 }) {
   return (
     <motion.div
-      className="min-h-screen bg-cover bg-center flex flex-col items-center justify-start p-4 *:relative"
+      className="flex min-h-screen flex-col items-center justify-start bg-cover bg-center p-4 *:relative"
       style={{ backgroundImage: "url('/images/bg_lobby.jpg')" }}
       initial={{ opacity: 0, scale: 1.05 }}
       animate={{ opacity: 1, scale: 1 }}

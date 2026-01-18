@@ -1,5 +1,6 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import { ArrowRight } from "lucide-react";
 import React from "react";
 
@@ -7,6 +8,7 @@ interface ActionCardProps {
   variant: "black" | "white";
   title?: string;
   text?: string;
+  size?: "small" | "medium" | "large";
   actionText?: string;
   hovered: boolean;
   onMouseEnter: () => void;
@@ -18,6 +20,7 @@ export default function ActionCard({
   variant,
   title = "XAMCARD",
   text,
+  size = "medium",
   actionText,
   hovered,
   onMouseEnter,
@@ -28,53 +31,54 @@ export default function ActionCard({
 
   return (
     <div
-      className={`w-72 h-96 rounded-2xl shadow-xl flex flex-col justify-between p-8 font-bold
-        hover:shadow-2xl transition-shadow duration-300 cursor-pointer
-        ${
-          isBlack
-            ? "bg-black text-white border-2 border-black"
-            : "bg-white text-black border-2 border-black"
-        }
-      `}
+      className={cn(
+        "flex cursor-pointer flex-col justify-between rounded-2xl p-4 font-bold shadow-lg transition-shadow duration-300",
+        size === "small"
+          ? "h-64 w-48"
+          : size === "large"
+            ? "h-[24rem] w-80"
+            : "h-80 w-64",
+        isBlack ? "border bg-black text-white" : "border bg-white text-black",
+      )}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       onClick={onClick}
     >
-      <div>
-        <div
-          className={`text-sm mb-6 font-normal uppercase tracking-wider ${
-            isBlack ? "text-gray-300" : "text-gray-500"
-          }`}
-        >
-          {title}
-        </div>
+      <div className="flex h-full w-full flex-col justify-between">
         {text && (
           <div
-            className={`text-xl leading-relaxed font-medium ${
+            className={`text-lg leading-relaxed font-normal ${
               isBlack ? "text-white" : "text-black"
             }`}
           >
             {text}
           </div>
         )}
+        <div
+          className={`mb-4 text-center text-xs font-normal tracking-wider uppercase ${
+            isBlack ? "text-gray-300" : "text-gray-500"
+          }`}
+        >
+          {title}
+        </div>
       </div>
       {actionText && (
         <div className="text-center">
           <div className="flex flex-col items-center justify-center space-x-2">
             <div
-              className={`text-2xl font-black uppercase tracking-wide ${
+              className={`text-xl font-black tracking-wide uppercase ${
                 isBlack ? "text-white" : "text-black"
               }`}
             >
               {actionText}
             </div>
             <ArrowRight
-              className={`w-10 h-10 transition-all duration-300 ${
+              className={`h-8 w-8 transition-all duration-300 ${
                 isBlack ? "text-white" : "text-black"
               } ${
                 hovered
-                  ? "opacity-100 translate-x-0"
-                  : "opacity-0 -translate-x-2"
+                  ? "translate-x-0 opacity-100"
+                  : "-translate-x-2 opacity-0"
               }`}
             />
           </div>

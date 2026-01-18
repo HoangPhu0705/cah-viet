@@ -29,14 +29,14 @@ export default function InteractiveCards({
   };
 
   return (
-    <div className="flex justify-center items-center mb-16 relative">
+    <div className="relative mb-16 flex items-center justify-center">
       <div className="relative">
         {/* White Join Card */}
         <div
           className={`absolute transition-all duration-500 ease-out ${
             hoveredCard === "join"
-              ? "transform -translate-x-32 -translate-y-4 rotate-[-20deg] scale-110 z-30 shadow-2xl"
-              : "transform -translate-x-24 -translate-y-2 rotate-[-12deg] z-20 shadow-lg"
+              ? "z-30 -translate-x-32 -translate-y-4 scale-110 rotate-[-20deg] transform shadow-2xl"
+              : "z-20 -translate-x-24 -translate-y-2 rotate-[-12deg] transform shadow-lg"
           }`}
         >
           <ActionCard
@@ -54,8 +54,8 @@ export default function InteractiveCards({
         <div
           className={`relative transition-all duration-500 ease-out ${
             hoveredCard === "create"
-              ? "transform translate-x-32 -translate-y-4 rotate-[20deg] scale-110 z-30 shadow-2xl"
-              : "transform translate-x-24 -translate-y-2 rotate-[12deg] z-20 shadow-lg"
+              ? "z-30 translate-x-32 -translate-y-4 scale-110 rotate-[20deg] transform shadow-2xl"
+              : "z-20 translate-x-24 -translate-y-2 rotate-[12deg] transform shadow-lg"
           }`}
         >
           <ActionCard

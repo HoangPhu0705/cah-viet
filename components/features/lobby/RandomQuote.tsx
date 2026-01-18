@@ -17,12 +17,12 @@ const funnyQuotes = [
 
 export default function RandomQuote() {
   return (
-    <div className="text-center mb-4 relative z-10">
-      <div className="flex w-3xl gap-3 justify-center bg-gradient-to-r from-white via-gray-50 to-white border-2 border-black rounded-2xl p-4 max-w-3xl mx-auto shadow-xl">
+    <div className="relative z-10 mb-4 text-center">
+      <div className="mx-auto flex w-3xl max-w-3xl justify-center gap-3 rounded-2xl border-2 border-black bg-gradient-to-r from-white via-gray-50 to-white p-4 shadow-xl">
         <span className="text-5xl">&ldquo;</span>
 
         <WordRotate
-          className="text-xl md:text-2xl text-black font-medium leading-relaxed mb-4"
+          className="mb-4 text-xl leading-relaxed font-medium text-black md:text-2xl"
           words={funnyQuotes}
           duration={7000}
         />
