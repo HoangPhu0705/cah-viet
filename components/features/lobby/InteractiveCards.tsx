@@ -35,8 +35,8 @@ export default function InteractiveCards({
         <div
           className={`absolute transition-all duration-500 ease-out ${
             hoveredCard === "join"
-              ? "z-30 -translate-x-32 -translate-y-4 scale-110 rotate-[-20deg] transform shadow-2xl"
-              : "z-20 -translate-x-24 -translate-y-2 rotate-[-12deg] transform shadow-lg"
+              ? "z-30 -translate-x-32 -translate-y-4 scale-110 rotate-[-20deg]"
+              : "z-20 -translate-x-24 -translate-y-2 rotate-[-12deg] transform"
           }`}
         >
           <ActionCard
@@ -54,8 +54,8 @@ export default function InteractiveCards({
         <div
           className={`relative transition-all duration-500 ease-out ${
             hoveredCard === "create"
-              ? "z-30 translate-x-32 -translate-y-4 scale-110 rotate-[20deg] transform shadow-2xl"
-              : "z-20 translate-x-24 -translate-y-2 rotate-[12deg] transform shadow-lg"
+              ? "z-30 translate-x-32 -translate-y-4 scale-110 rotate-[20deg]"
+              : "z-20 translate-x-24 -translate-y-2 rotate-[12deg] transform"
           }`}
         >
           <ActionCard

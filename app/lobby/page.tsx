@@ -8,7 +8,7 @@ export default function LobbyPage() {
   return (
     <AnimatedBackground>
       <RandomQuote />
-      <div className="relative z-10 text-center max-w-7xl mx-auto w-full">
+      <div className="relative z-10 mx-auto w-full max-w-7xl text-center">
         <AppTitle />
         <InteractiveCards
           joinText="Tham gia phòng có sẵn và lao vào cuộc chiến hỗn loạn cùng bạn bè của bạn."
@@ -16,8 +16,8 @@ export default function LobbyPage() {
           joinAction="THAM GIA PHÒNG"
           createAction="TẠO PHÒNG"
         />
-        <div className="text-center relative z-10">
-          <p className="text-gray-500 text-sm md:text-base font-medium">
+        <div className="relative z-10 text-center">
+          <p className="text-sm font-medium text-gray-500 md:text-base">
             XAMCard @ 2025
           </p>
         </div>

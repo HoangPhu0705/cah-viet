@@ -1,22 +1,11 @@
 "use client";
-
+import { ActionCardProps } from "./types/action-card";
 import { cn } from "@/lib/utils";
 import { ArrowRight } from "lucide-react";
 import React from "react";
 
-interface ActionCardProps {
-  variant: "black" | "white";
-  title?: string;
-  text?: string;
-  size?: "small" | "medium" | "large";
-  actionText?: string;
-  hovered: boolean;
-  onMouseEnter: () => void;
-  onMouseLeave: () => void;
-  onClick?: () => void;
-}
-
 export default function ActionCard({
+  dataSwapyId,
   variant,
   title = "XAMCARD",
   text,
@@ -31,6 +20,7 @@ export default function ActionCard({
 
   return (
     <div
+      data-swapy-item={dataSwapyId}
       className={cn(
         "flex cursor-pointer flex-col justify-between rounded-2xl p-4 font-bold shadow-lg transition-shadow duration-300",
         size === "small"
