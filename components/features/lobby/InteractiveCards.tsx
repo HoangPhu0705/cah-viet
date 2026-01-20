@@ -1,14 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import ActionCard from "./ActionCard";
-
-interface InteractiveCardsProps {
-  joinText: string;
-  createText: string;
-  joinAction: string;
-  createAction: string;
-}
+import ActionCard from "../../ui/ActionCard";
+import { InteractiveCardsProps } from "./types/interactive-card";
 
 export default function InteractiveCards({
   joinText,

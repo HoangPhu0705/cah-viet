@@ -20,15 +20,16 @@ export default function ActionCard({
 
   return (
     <div
-      data-swapy-item={dataSwapyId}
+      {...(dataSwapyId && { "data-swapy-item": dataSwapyId })}
       className={cn(
-        "flex cursor-pointer flex-col justify-between rounded-2xl p-4 font-bold shadow-lg transition-shadow duration-300",
+        "flex flex-col justify-between rounded-2xl p-4 font-bold shadow-lg transition-shadow duration-300",
         size === "small"
           ? "h-64 w-48"
           : size === "large"
             ? "h-[24rem] w-80"
             : "h-80 w-64",
         isBlack ? "border bg-black text-white" : "border bg-white text-black",
+        dataSwapyId ? "cursor-grab" : "cursor-pointer",
       )}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
