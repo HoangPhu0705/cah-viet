@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { PlayingCardProps } from "./types/playing-card";
-import ActionCard from "../lobby/ActionCard";
+import ActionCard from "../../ui/ActionCard";
 
 export default function PlayingCard({
   variant,

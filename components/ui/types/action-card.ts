@@ -1,5 +1,5 @@
 export interface ActionCardProps {
-  dataSwapyId: string;
+  dataSwapyId?: string;
   variant: "black" | "white";
   title?: string;
   text?: string;

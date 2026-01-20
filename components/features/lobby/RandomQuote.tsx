@@ -1,7 +1,7 @@
 "use client";
 
 import { WordRotate } from "@/components/ui/word-rotate";
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 const funnyQuotes = [
   "Nơi tình bạn bị phản bội chỉ bằng một lá bài.",
