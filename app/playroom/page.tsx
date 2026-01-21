@@ -31,12 +31,12 @@ export default function Playroom() {
       className="flex h-screen w-full items-end justify-center p-4"
       ref={container}
     >
-      <div data-swapy-slot="a" className="mr-2">
-        <PlayingCard dataSwapyId="a" variant="white" text="A" size="small" />
+      <div data-swapy-slot="a" className="mr-2 h-64 w-48">
+        <PlayingCard dataSwapyId="a" variant="white" text="A" />
       </div>
 
-      <div data-swapy-slot="b" className="">
-        <PlayingCard dataSwapyId="b" variant="black" text="B" size="medium" />
+      <div data-swapy-slot="b" className="h-80 w-64">
+        <PlayingCard dataSwapyId="b" variant="black" text="B" />
       </div>
     </div>
   );

@@ -5,31 +5,24 @@ import { ArrowRight } from "lucide-react";
 import React from "react";
 
 export default function ActionCard({
-  dataSwapyId,
   variant,
   title = "XAMCARD",
   text,
-  size = "medium",
   actionText,
   hovered,
   onMouseEnter,
   onMouseLeave,
   onClick,
+  className,
 }: ActionCardProps) {
   const isBlack = variant === "black";
 
   return (
     <div
-      {...(dataSwapyId && { "data-swapy-item": dataSwapyId })}
       className={cn(
-        "flex flex-col justify-between rounded-2xl p-4 font-bold shadow-lg transition-shadow duration-300",
-        size === "small"
-          ? "h-64 w-48"
-          : size === "large"
-            ? "h-[24rem] w-80"
-            : "h-80 w-64",
+        "flex h-full w-full flex-col justify-between rounded-2xl p-4 font-bold shadow-lg transition-shadow duration-300",
         isBlack ? "border bg-black text-white" : "border bg-white text-black",
-        dataSwapyId ? "cursor-grab" : "cursor-pointer",
+        className,
       )}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}

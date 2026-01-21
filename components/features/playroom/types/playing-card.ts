@@ -1,6 +1,6 @@
 export interface PlayingCardProps {
   variant: "black" | "white";
   text?: string;
-  size?: "small" | "medium" | "large";
-  dataSwapyId: string;
+  dataSwapyId?: string;
+  className?: string;
 }
