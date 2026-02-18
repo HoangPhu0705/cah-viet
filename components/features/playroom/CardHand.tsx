@@ -10,25 +10,22 @@ interface CardHandProps {
 
 const CARD_WIDTH = 156; // px
 const CARD_HEIGHT = 232; // px
-const FAN_ANGLE = 40; // total degrees spanned by the whole hand
-const PIVOT_DIST = 900; // distance from pivot to card bottom-center
+const SPREAD_OVERLAP = 50; // px each card overlaps the previous when fanned
+const MAX_ROTATION = 6; // max rotation in degrees for outermost cards
+const COLLAPSED_OFFSET = 4; // px offset per card when stacked
 
 export default function CardHand({ cards }: CardHandProps) {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [containerHovered, setContainerHovered] = useState(false);
   const count = cards.length;
 
-  const startAngle = -FAN_ANGLE / 2;
-  const step = count > 1 ? FAN_ANGLE / (count - 1) : 0;
+  // Fanned: card spacing = CARD_WIDTH - SPREAD_OVERLAP
+  const cardStep = CARD_WIDTH - SPREAD_OVERLAP;
+  const totalFannedWidth = CARD_WIDTH + cardStep * (count - 1);
+  const containerWidth = totalFannedWidth + 120; // padding
+  const containerHeight = CARD_HEIGHT + 40; // room for hover lift
 
-  const angleRad = (FAN_ANGLE / 2) * (Math.PI / 180);
-  const maxX = PIVOT_DIST * Math.sin(angleRad) + CARD_WIDTH / 2;
-  const containerWidth = maxX * 2; // symmetric
-  const containerHeight = CARD_HEIGHT + 56;
-
-  // Pivot sits at the horizontal center, below the container bottom
-  const pivotX = containerWidth / 2;
-  const pivotY = containerHeight + (PIVOT_DIST - CARD_HEIGHT); // below the container
+  const centerX = containerWidth / 2;
 
   return (
     <div
@@ -41,35 +38,41 @@ export default function CardHand({ cards }: CardHandProps) {
       }}
     >
       {cards.map((card, i) => {
-        const angleDeg = containerHovered
-          ? startAngle + step * i
-          : (i - (count - 1) / 2) * 2;
-        const angleRad = angleDeg * (Math.PI / 180);
+        const mid = (count - 1) / 2;
+        const t = count > 1 ? (i - mid) / mid : 0; // -1 to 1
 
-        // Card bottom-center position after rotating around pivot
-        const cardBottomX = pivotX + PIVOT_DIST * Math.sin(angleRad);
-        const cardBottomY = pivotY - PIVOT_DIST * Math.cos(angleRad);
+        // Fanned position: evenly spaced from center
+        const fannedLeft = centerX - totalFannedWidth / 2 + cardStep * i;
+        const fannedRotation = t * MAX_ROTATION;
+
+        // Collapsed position: stacked at center with tiny offset
+        const collapsedLeft =
+          centerX - CARD_WIDTH / 2 + (i - mid) * COLLAPSED_OFFSET;
+        const collapsedRotation = (i - mid) * 1.5;
+
+        const left = containerHovered ? fannedLeft : collapsedLeft;
+        const rotation = containerHovered ? fannedRotation : collapsedRotation;
 
         const isHovered = hoveredIndex === i;
-        const hoverShift = isHovered && containerHovered ? -20 : 0;
+        const hoverLift = isHovered && containerHovered ? -20 : 0;
 
         return (
           <div
             key={i}
-            className="absolute transition-all duration-300"
+            className="absolute transition-all duration-300 ease-out"
             style={{
               width: CARD_WIDTH,
               height: CARD_HEIGHT,
-              left: cardBottomX - CARD_WIDTH / 2,
-              top: cardBottomY - CARD_HEIGHT + hoverShift,
-              transform: `rotate(${angleDeg}deg) ${isHovered ? "scale(1.1) translateX(-40px)" : ""}`,
+              left,
+              bottom: 20 - hoverLift,
+              transform: `rotate(${rotation}deg) ${isHovered ? "scale(1.1) translateX(-20px)" : ""}`,
+              transformOrigin: "bottom center",
               zIndex: isHovered ? count + 1 : i + 1,
             }}
             onMouseEnter={() => setHoveredIndex(i)}
             onMouseLeave={() => setHoveredIndex(null)}
           >
             <PlayingCard
-              dataSwapyId={`hand-card-${i}`}
               variant={card.variant}
               text={card.text}
               className={card.className}
