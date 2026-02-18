@@ -33,15 +33,17 @@ export default function InteractiveCards({
               : "z-20 -translate-x-24 -translate-y-2 rotate-[-12deg] transform"
           }`}
         >
-          <ActionCard
-            variant="white"
-            text={joinText}
-            actionText={joinAction}
-            hovered={hoveredCard === "join"}
-            onMouseEnter={() => setHoveredCard("join")}
-            onMouseLeave={() => setHoveredCard(null)}
-            onClick={handleJoinRoom}
-          />
+          <div className="h-80 w-64 cursor-pointer">
+            <ActionCard
+              variant="white"
+              text={joinText}
+              actionText={joinAction}
+              hovered={hoveredCard === "join"}
+              onMouseEnter={() => setHoveredCard("join")}
+              onMouseLeave={() => setHoveredCard(null)}
+              onClick={handleJoinRoom}
+            />
+          </div>
         </div>
 
         {/* Black Create Card */}
@@ -52,15 +54,17 @@ export default function InteractiveCards({
               : "z-20 translate-x-24 -translate-y-2 rotate-[12deg] transform"
           }`}
         >
-          <ActionCard
-            variant="black"
-            text={createText}
-            actionText={createAction}
-            hovered={hoveredCard === "create"}
-            onMouseEnter={() => setHoveredCard("create")}
-            onMouseLeave={() => setHoveredCard(null)}
-            onClick={handleCreateRoom}
-          />
+          <div className="h-80 w-64 cursor-pointer">
+            <ActionCard
+              variant="black"
+              text={createText}
+              actionText={createAction}
+              hovered={hoveredCard === "create"}
+              onMouseEnter={() => setHoveredCard("create")}
+              onMouseLeave={() => setHoveredCard(null)}
+              onClick={handleCreateRoom}
+            />
+          </div>
         </div>
       </div>
     </div>
